@@ -1,8 +1,8 @@
 # Overview
 
-This is a library which provides common and simplified way of sending results to [TestRail](https://www.gurock.com/testrail).  
+Testrail-reporting is a library that provides a common and simplified way of sending results to [TestRail](https://www.gurock.com/testrail).  
 
-Library "attaches" itself on post-test actions and gathers results from tests. At the end of suite results are sent to TestRail.  
+The library "attaches" itself on post-test actions and gathers results from tests. At the end of suite results are sent to TestRail.  
 Tests are matched with test cases by name.  
 
 Test case format includes FQCN as well as method name and also parameter if needed. Case names can look like:
@@ -54,7 +54,7 @@ or, if you'd like to publish it with custom version
 
 # Testing
 
-Only way to test listeners is to use `Verify***Listener` classes to debug if all required method invocations happen.
+The only way to test listeners is to use `Verify***Listener` classes to debug if all required method invocations happen.
 
 # Using
 
