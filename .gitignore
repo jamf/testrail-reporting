@@ -1,4 +1,7 @@
-.idea/
-.gradle/
-build/
-out/
+.idea
+build
+.gradle
+out
+
+*.iml
+test-output

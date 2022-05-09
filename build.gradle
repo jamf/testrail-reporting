@@ -1,46 +1,92 @@
+buildscript {
+  repositories {
+    mavenCentral()
+    gradlePluginPortal()
+  }
+  dependencies {
+    classpath "com.github.ben-manes:gradle-versions-plugin:0.38.0"
+  }
+}
+
 plugins {
-  id 'java'
-  id 'groovy'
-  id 'checkstyle'
+  id 'maven-publish'
 }
 
-group 'com.jamf'
-version '0.0.1-SNAPSHOT'
+subprojects {
+  apply plugin: 'java'
+  apply plugin: 'groovy'
+  apply plugin: 'checkstyle'
+  apply plugin: 'com.github.ben-manes.versions'
 
-sourceCompatibility = JavaVersion.VERSION_11
+  group 'com.jamf.reporting'
+  version '1.0.0'
 
-checkstyle {
-  toolVersion '8.11'
-  maxWarnings 0
-  maxErrors 0
-}
+  sourceCompatibility = JavaVersion.VERSION_11
 
-repositories {
-  mavenCentral()
-}
+  java {
+    withJavadocJar()
+    withSourcesJar()
+  }
 
-dependencies {
-  compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
-  compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.+'
-  compile group: 'com.codepine.api', name: 'testrail-api-java-client', version: '2.0.1'
-  compile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.2.0'
-  compile group: 'org.junit.jupiter', name: 'junit-jupiter-params', version: '5.2.0'
-  compile group: 'org.testng', name: 'testng', version: '6.11'
-  compile group: 'org.spockframework', name: 'spock-core', version: '1.2-groovy-2.4'
-}
+  checkstyle {
+    toolVersion '8.11'
+    maxWarnings 0
+    maxErrors 0
+  }
 
-task sourceJar(type: Jar) {
-  archiveClassifier.set('sources')
-  from sourceSets.main.allJava
-}
+  repositories {
+    mavenCentral()
+  }
 
-task javadocJar(type: Jar, dependsOn: javadoc) {
-  archiveClassifier.set('javadoc')
-  from javadoc.destinationDir
-}
+  dependencies {
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.7'
+    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
 
-artifacts {
-  archives jar
-  archives sourceJar
-  archives javadocJar
+    testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.8.1'
+    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.1'
+    testRuntimeOnly 'net.bytebuddy:byte-buddy:1.12.1'
+    testRuntimeOnly 'org.objenesis:objenesis:3.2'
+
+    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+  }
+
+  test {
+    include '**/*Spec*'
+
+    outputs.upToDateWhen {false}
+    testLogging {
+      events "passed", "skipped", "failed"
+    }
+    afterSuite {desc, result ->
+      if (!desc.parent) {
+        println("${result.resultType} " +
+            "(${result.testCount} tests, " +
+            "${result.successfulTestCount} successes, " +
+            "${result.failedTestCount} failures, " +
+            "${result.skippedTestCount} skipped)")
+      }
+    }
+
+    useJUnitPlatform()
+  }
+
+  javadoc {
+    if (JavaVersion.current().isJava9Compatible()) {
+      options.addBooleanOption('html5', true)
+    }
+  }
+
+  dependencyUpdates.resolutionStrategy {
+    componentSelection {rules ->
+      rules.all {ComponentSelection selection ->
+        boolean rejected = ['alpha', 'beta', 'rc', 'rc1', 'rc-1', 'cr', 'm', 'preview', 'b', 'ea'].any {qualifier ->
+          selection.candidate.version ==~ /(?i).*[.-]$qualifier[.\d\w-+]*/
+        }
+        if (rejected) {
+          selection.reject('Release candidate')
+        }
+      }
+    }
+  }
 }
