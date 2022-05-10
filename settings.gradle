@@ -1,0 +1,12 @@
+pluginManagement {
+  repositories {
+    gradlePluginPortal()
+  }
+}
+
+rootProject.name = 'testrail-reporting'
+include 'core'
+include 'spock'
+include 'junit'
+include 'testng'
+
