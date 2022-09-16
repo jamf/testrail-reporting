@@ -22,6 +22,7 @@ public class TestRailProperties {
 
   private static final Logger logger = LoggerFactory.getLogger(TestRailProperties.class);
   private static final String DEFAULT_MISSING_SECTION_ID_STRING = "-1";
+  private static final String DEFAULT_MISSING_SUITE_ID_STRING = "-1";
   private String url;
   private String username;
   private String password;
@@ -30,7 +31,7 @@ public class TestRailProperties {
   private String sectionName;
   private Integer suiteId;
   private String suiteName;
-  private boolean send;
+  private boolean send = false;
   private String runName;
   private String runDescription;
   private String milestoneName;
@@ -103,7 +104,7 @@ public class TestRailProperties {
       this.projectID = Integer.parseInt(systemProperties.getProperty(PROJECT_ID.getProperty(), fileProperties.getProperty(PROJECT_ID.getProperty())));
       this.sectionID = Integer.parseInt(systemProperties.getProperty(SECTION_ID.getProperty(), fileProperties.getProperty(SECTION_ID.getProperty(), DEFAULT_MISSING_SECTION_ID_STRING)));
       this.sectionName = systemProperties.getProperty(SECTION_NAME.getProperty(), fileProperties.getProperty(SECTION_NAME.getProperty()));
-      this.suiteId = Integer.parseInt(systemProperties.getProperty(SUITE_ID.getProperty(), fileProperties.getProperty(SUITE_ID.getProperty(), DEFAULT_MISSING_SECTION_ID_STRING)));
+      this.suiteId = Integer.parseInt(systemProperties.getProperty(SUITE_ID.getProperty(), fileProperties.getProperty(SUITE_ID.getProperty(), DEFAULT_MISSING_SUITE_ID_STRING)));
       this.suiteName = systemProperties.getProperty(SUITE_NAME.getProperty(), fileProperties.getProperty(SUITE_NAME.getProperty()));
       this.send = Boolean.parseBoolean(systemProperties.getProperty(SEND.getProperty(), fileProperties.getProperty(SEND.getProperty())));
       this.runDescription = systemProperties.getProperty(RUN_DESCRIPTION.getProperty(), fileProperties.getProperty(RUN_DESCRIPTION.getProperty()));

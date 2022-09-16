@@ -1,8 +1,8 @@
 dependencies {
   implementation group: 'com.codepine.api', name: 'testrail-api-java-client', version: '2.0.2'
-  implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.4.0'
-  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.0'
+  implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.2.0'
+  implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.4'
 
   // MockServer
-  testImplementation group: 'org.mock-server', name: 'mockserver-netty', version: '5.11.2'
+  testImplementation group: 'org.mock-server', name: 'mockserver-netty', version: '5.14.0'
 }
