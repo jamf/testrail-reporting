@@ -43,11 +43,11 @@ subprojects {
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.1'
     implementation group: 'org.apache.groovy', name: 'groovy', version: '4.0.5'
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.9.0'
-    testRuntimeOnly 'net.bytebuddy:byte-buddy:1.12.16'
-    testRuntimeOnly 'org.objenesis:objenesis:3.3'
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.9.0'
+    testRuntimeOnly group: 'net.bytebuddy', name: 'byte-buddy', version: '1.12.16'
+    testRuntimeOnly group: 'org.objenesis', name: 'objenesis', version: '3.3'
 
-    testImplementation 'org.spockframework:spock-core:2.2-groovy-4.0'
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.2-groovy-4.0'
   }
 
   test {
