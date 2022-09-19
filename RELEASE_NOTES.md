@@ -1,7 +1,15 @@
 # Overview
 This file is meant to provide information about meaningful changes introduced into this library.
 
-## Version 0.0.1
+## Version 1.1.0
+### Spock and Groovy upgrade
+Changes:
+
+- Will use Spock 2.2
+- Will use Groovy 4
+- Updated several dependencies
+
+## Version 1.0.0
 ### Initial release
 Changes:
 

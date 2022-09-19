@@ -19,9 +19,9 @@ subprojects {
   apply plugin: 'com.github.ben-manes.versions'
 
   group 'com.jamf.reporting'
-  version '1.0.0'
+  version '1.1.0'
 
-  sourceCompatibility = JavaVersion.VERSION_11
+  sourceCompatibility = JavaVersion.VERSION_17
 
   java {
     withJavadocJar()
@@ -39,16 +39,15 @@ subprojects {
   }
 
   dependencies {
-    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.32'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.7'
-    implementation 'org.codehaus.groovy:groovy-all:3.0.9'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.1'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.1'
+    implementation group: 'org.apache.groovy', name: 'groovy', version: '4.0.5'
 
-    testRuntimeOnly 'org.junit.platform:junit-platform-commons:1.8.1'
-    testRuntimeOnly 'org.junit.vintage:junit-vintage-engine:5.8.1'
-    testRuntimeOnly 'net.bytebuddy:byte-buddy:1.12.1'
-    testRuntimeOnly 'org.objenesis:objenesis:3.2'
+    testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-commons', version: '1.9.0'
+    testRuntimeOnly group: 'net.bytebuddy', name: 'byte-buddy', version: '1.12.16'
+    testRuntimeOnly group: 'org.objenesis', name: 'objenesis', version: '3.3'
 
-    testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
+    testImplementation group: 'org.spockframework', name: 'spock-core', version: '2.2-groovy-4.0'
   }
 
   test {

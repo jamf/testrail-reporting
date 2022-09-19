@@ -5,3 +5,4 @@ out
 
 *.iml
 test-output
+.java-version

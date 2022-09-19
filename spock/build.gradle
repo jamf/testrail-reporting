@@ -1,4 +1,7 @@
 dependencies {
   implementation project(':core')
-  implementation group: 'org.spockframework', name: 'spock-core', version: '2.0-groovy-3.0'
+  implementation group: 'org.spockframework', name: 'spock-core', version: '2.2-groovy-4.0'
+
+  testImplementation group: 'org.junit.platform', name: 'junit-platform-launcher'
+  testRuntimeOnly group: 'org.junit.platform', name: 'junit-platform-testkit', version: '1.9.0'
 }
