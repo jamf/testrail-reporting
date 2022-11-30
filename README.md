@@ -63,6 +63,20 @@ or, if you'd like to publish it with custom version
 
 ## Setup
 
+- add repository from which library should be pulled ([MORE INFO](https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry#using-a-published-package))
+
+```groovy
+repositories {
+    maven {
+        url = uri("https://maven.pkg.github.com/jamf/testrail-reporting")
+        credentials {
+            username = XXX #github username
+            password = YYY #github token with ability to pull packages
+        }
+    }
+}
+```
+
 - add gradle dependency, targeting test runner you use
 
 ```groovy
